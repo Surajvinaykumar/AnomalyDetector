@@ -11,7 +11,7 @@ const Header: React.FC = () => {
               <h1 className="text-2xl font-bold text-white tracking-tight">
                 Anomaly<span className="text-blue-400">AI</span>
               </h1>
-              <p className="text-xs text-gray-400">Powered by Cisco Foundation Models</p>
+              <p className="text-xs text-gray-400">Using Cisco's Foundation Model</p>
             </div>
           </div>
           
