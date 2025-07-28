@@ -67,13 +67,11 @@ function App() {
         <footer className="mt-20 pt-8 border-t border-gray-800">
           <div className="text-center space-y-4">
             <p className="text-gray-400">
-              Powered by Cisco Foundation Models and Hugging Face Transformers
+              Made by Suraj
             </p>
             <div className="flex justify-center space-x-6 text-sm text-gray-500">
               
-              <span>•</span>
-              <span>Made by Suraj</span>
-              <span>•</span>
+              
               
             </div>
             
