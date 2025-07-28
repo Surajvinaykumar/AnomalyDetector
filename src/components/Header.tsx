@@ -9,7 +9,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-3">
             <div>
               <h1 className="text-2xl font-bold text-white tracking-tight">
-                Anomaly<span className="text-grey-400">_Detector</span>
+                An0maly<span className="text-grey-400">_Detect0r</span>
               </h1>
               <p className="text-xs text-gray-400">Using Cisco's Foundation Model</p>
             </div>
