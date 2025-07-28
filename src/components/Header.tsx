@@ -18,7 +18,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 px-3 py-1 bg-green-900/20 text-green-400 rounded-full border border-green-800">
               <Shield className="w-4 h-4" />
-              <span className="text-sm font-medium">Secure</span>
+              
             </div>
           </div>
         </div>
