@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom font fallback for Poladots (using Poiret One as similar alternative) */
+/* Custom font  */
 * {
-  font-family: 'Poiret One', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
