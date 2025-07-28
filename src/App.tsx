@@ -46,8 +46,7 @@ function App() {
             AI-Powered Log Anomaly Detection
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Upload your log files and let our advanced AI models detect anomalies with 
-            natural language explanations. Supports multiple formats including JSON, CSV, XML, and Syslog.
+            Upload your log files to detect anomalies. Supports multiple formats including JSON, CSV, XML, and Syslog.
           </p>
         </div>
 
@@ -71,15 +70,13 @@ function App() {
               Powered by Cisco Foundation Models and Hugging Face Transformers
             </p>
             <div className="flex justify-center space-x-6 text-sm text-gray-500">
-              <span>Secure Processing</span>
+              
               <span>•</span>
-              <span>Real-time Analysis</span>
+              <span>Made by Suraj</span>
               <span>•</span>
-              <span>Natural Language Insights</span>
+              
             </div>
-            <p className="text-sm text-gray-500 mt-4">
-              Made by Suraj
-            </p>
+            
           </div>
         </footer>
       </main>
