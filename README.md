@@ -1,12 +1,12 @@
-# AnomalyAI - Cisco Foundation Model Anomaly Detection Platform
+# AnomalyAI - Advanced Anomaly Detection Platform
 
-A sophisticated, production-ready anomaly detection platform powered by Cisco Foundation Models and Hugging Face transformers. Features a minimalistic design with real-time log analysis capabilities.
+A sophisticated, production-ready anomaly detection platform featuring AI-powered log analysis capabilities with natural language insights. Features a minimalistic design with real-time processing.
 
 ## 🚀 Features
 
-- **Multi-Format Support**: Upload plain text, JSON, CSV, XML, and Syslog files
-- **AI-Powered Detection**: Leverages Cisco Foundation Models for accurate anomaly detection
-- **Natural Language Insights**: Uses Hugging Face models for human-readable explanations
+- **Multi-Format Support**: Upload Syslog files
+- **AI-Powered Detection**: Advanced algorithms for accurate anomaly detection
+- **Natural Language Insights**: Human-readable explanations of detected anomalies
 - **Real-Time Analysis**: Instant processing and results display
 - **Minimalistic Design**: Clean, professional UI with black/grey/off-white theme
 - **Responsive Layout**: Optimized for all devices and screen sizes
@@ -15,10 +15,9 @@ A sophisticated, production-ready anomaly detection platform powered by Cisco Fo
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18, TypeScript, Tailwind CSS
-- **Backend**: Vercel Serverless Functions
-- **AI/ML**: Cisco Foundation Models, Hugging Face Transformers
-- **Deployment**: Vercel
-- **Styling**: Custom Poladots-inspired typography
+- **Backend**: Express.js with PostgreSQL
+- **AI/ML**: Advanced ML models for anomaly detection and natural language processing
+- **Deployment**: Vercel for frontend, custom server for backend
 
 ## 🎨 Design System
 
@@ -32,42 +31,77 @@ A sophisticated, production-ready anomaly detection platform powered by Cisco Fo
 ### Prerequisites
 
 - Node.js 18+ and npm
-- Hugging Face API key (optional, for enhanced natural language generation)
-- Cisco Foundation Model API access (for production deployment)
+- PostgreSQL database
+- API keys for enhanced features (optional)
+
+### Database Setup
+
+1. **Install PostgreSQL**:
+
+   - On macOS: `brew install postgresql`
+   - On Ubuntu: `sudo apt-get install postgresql postgresql-contrib`
+   - On Windows: Download from https://www.postgresql.org/download/
+
+2. **Create Database**:
+
+   ```bash
+   createdb anomaly_detector
+   ```
+
+3. **Initialize Database Tables**:
+
+   ```bash
+   npm run init-db
+   ```
+
+   This will create the necessary tables and a default user (username: root, password: rootroot).
 
 ### Local Development
 
 1. **Clone and Install**:
+
    ```bash
    npm install
    ```
 
-2. **Environment Setup** (optional):
-   Create a `.env.local` file:
+2. **Environment Setup**:
+   Create a `.env` file with your database configuration:
+
    ```
-   HUGGINGFACE_API_KEY=your_huggingface_api_key_here
+   DB_USER=your_db_user
+   DB_HOST=localhost
+   DB_NAME=anomaly_detector
+   DB_PASSWORD=your_db_password
+   DB_PORT=5432
+   JWT_SECRET=your_jwt_secret_key
+   PORT=3001
    ```
 
-3. **Start Development Server**:
+3. **Start Backend Server**:
+
+   ```bash
+   npm run server
+   ```
+
+4. **Start Frontend Development Server**:
+
    ```bash
    npm run dev
    ```
 
-4. **Open Browser**:
+5. **Open Browser**:
    Navigate to `http://localhost:3000`
 
 ### Production Deployment
 
 1. **Deploy to Vercel**:
+
    ```bash
    vercel deploy
    ```
 
 2. **Set Environment Variables**:
-   Add your Hugging Face API key in Vercel dashboard
-
-3. **Configure Cisco API**:
-   Update `api/detect-anomalies.ts` with your Cisco Foundation Model credentials
+   Add your database credentials and JWT secret in Vercel dashboard
 
 ## 📁 Project Structure
 
@@ -76,42 +110,38 @@ src/
 ├── components/
 │   ├── Header.tsx          # Navigation and branding
 │   ├── FileUpload.tsx      # Drag & drop file upload
+│   ├── Login.tsx           # User login form
+│   ├── Register.tsx        # User registration form
 │   └── AnomalyResults.tsx  # Results display with NL descriptions
 ├── services/
-│   └── anomalyService.ts   # Cisco AI service integration
+│   ├── anomalyService.ts   # AI service integration
+│   └── authService.ts      # User authentication service
+├── contexts/
+│   ├── AuthContext.tsx     # Authentication context
+│   └── ThemeContext.tsx    # Theme context
+├── scripts/
+│   └── initDb.ts           # Database initialization script
 └── App.tsx                 # Main application component
 
 api/
-└── detect-anomalies.ts     # Serverless anomaly detection endpoint
+├── detect-anomalies.ts     # Serverless anomaly detection endpoint
+├── auth/
+│   ├── login.ts            # Authentication login endpoint
+│   └── register.ts         # Authentication registration endpoint
+└── upload.ts               # File upload endpoint
+
+server.ts                   # Express server for authentication and file upload
 ```
 
 ## 🔧 API Integration
 
-### Cisco Foundation Models
-
-Replace the mock implementation in `anomalyService.ts` with actual Cisco API calls:
-
-```typescript
-async detectAnomalies(content: string, fileType: string) {
-  const response = await fetch('YOUR_CISCO_API_ENDPOINT', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.CISCO_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ content, fileType }),
-  });
-  
-  return await response.json();
-}
-```
-
-### Hugging Face Integration
-
-The platform uses Hugging Face's free inference API for natural language generation. No additional setup required for basic functionality.
+The platform uses advanced ML models for anomaly detection and natural language generation. No additional setup required for basic functionality.
 
 ## 🔒 Security Features
 
+- **User Authentication**: Secure login and registration with JWT tokens
+- **File Upload Protection**: Only authenticated users can upload files
+- **File Validation**: Only .log files are allowed with size limits
 - **Secure Processing**: All data is processed server-side
 - **No Data Storage**: Files are analyzed in memory and not persisted
 - **API Rate Limiting**: Built-in protection against abuse
@@ -119,11 +149,7 @@ The platform uses Hugging Face's free inference API for natural language generat
 
 ## 📊 Supported Log Formats
 
-- **Plain Text**: Standard log files (.txt, .log)
-- **JSON**: Structured JSON logs
-- **CSV**: Comma-separated log data
-- **XML**: XML-formatted logs
-- **Syslog**: System log format
+- **Syslog**: System log format (.log files only)
 
 ## 🎯 Anomaly Detection
 
@@ -154,11 +180,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 3. Commit your changes
 4. Push to the branch
 5. Open a Pull Request
-
-## 📞 Support
-
-For support and questions, please open an issue on GitHub or contact the development team.
-
----
-
-Built with ❤️ using Cisco Foundation Models and Hugging Face Transformers

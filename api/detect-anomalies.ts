@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-// Hugging Face Inference API integration
 const HF_API_URL = 'https://api-inference.huggingface.co/models';
 
 interface AnomalyDetectionRequest {
@@ -38,11 +37,11 @@ export default async function handler(
     // Parse log content based on file type
     const logEntries = parseLogContent(content, fileType);
     
-    // Cisco Foundation Model Integration (placeholder)
-    // In production, replace with actual Cisco API calls
+    // AI Model Integration (placeholder)
+    // In production, replace with actual API calls
     const anomalies = await detectAnomalies(logEntries);
     
-    // Generate natural language descriptions using Hugging Face
+    // Generate natural language descriptions using AI model
     const anomaliesWithNL = await Promise.all(
       anomalies.map(async (anomaly) => ({
         ...anomaly,
@@ -92,8 +91,8 @@ function parseLogContent(content: string, fileType: string): string[] {
 }
 
 async function detectAnomalies(logEntries: string[]): Promise<Anomaly[]> {
-  // Cisco Foundation Model Integration
-  // This is a placeholder for the actual Cisco API integration
+  // AI Model Integration
+  // This is a placeholder for the actual API integration
   
   const anomalies: Anomaly[] = [];
   
@@ -110,7 +109,7 @@ async function detectAnomalies(logEntries: string[]): Promise<Anomaly[]> {
         timestamp: new Date().toISOString(),
         severity,
         description: generateAnomalyDescription(entry),
-        naturalLanguage: '', // Will be filled by Hugging Face
+        naturalLanguage: '', // Will be filled by AI model
         confidence: Math.floor(Math.random() * 30) + 70,
         affectedSystems: extractAffectedSystems(entry),
         logEntry: entry.substring(0, 200) + (entry.length > 200 ? '...' : ''),
@@ -181,7 +180,7 @@ function extractAffectedSystems(logEntry: string): string[] {
 
 async function generateNaturalLanguageDescription(anomaly: Anomaly): Promise<string> {
   try {
-    // Using Hugging Face's free inference API for text generation
+    // Using AI model for text generation
     const response = await fetch(`${HF_API_URL}/microsoft/DialoGPT-medium`, {
       method: 'POST',
       headers: {
@@ -202,7 +201,7 @@ async function generateNaturalLanguageDescription(anomaly: Anomaly): Promise<str
       return result[0]?.generated_text || getFallbackDescription(anomaly);
     }
   } catch (error) {
-    console.error('Hugging Face API error:', error);
+    console.error('AI Model API error:', error);
   }
   
   return getFallbackDescription(anomaly);

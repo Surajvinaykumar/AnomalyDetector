@@ -1,5 +1,15 @@
-// Cisco Foundation Model Integration
-class CiscoAnomalyService {
+interface Anomaly {
+  id: string;
+  timestamp: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  description: string;
+  naturalLanguage: string;
+  confidence: number;
+  affectedSystems: string[];
+  logEntry: string;
+}
+
+class AnomalyService {
   private apiEndpoint = '/api/detect-anomalies';
 
   async detectAnomalies(content: string, fileType: string) {
@@ -20,7 +30,7 @@ class CiscoAnomalyService {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const result = await response.json();
+      const result = await response.json() as { anomalies: Anomaly[] };
       return result.anomalies;
     } catch (error) {
       console.error('Error detecting anomalies:', error);
@@ -28,7 +38,7 @@ class CiscoAnomalyService {
     }
   }
 
-  // Mock data for development - replace with actual Cisco API integration
+  // Mock data for development - replace with actual API integration
   async mockDetectAnomalies(content: string, fileType: string) {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 3000));
@@ -101,4 +111,4 @@ class CiscoAnomalyService {
   }
 }
 
-export const anomalyService = new CiscoAnomalyService();
+export const anomalyService = new AnomalyService();

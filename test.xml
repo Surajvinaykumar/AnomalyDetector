@@ -1,0 +1,7 @@
+<event>
+  <type>user_login</type>
+  <timestamp>2025-07-30T06:00:00Z</timestamp>
+  <user_id>12345</user_id>
+  <ip_address>192.168.1.100</ip_address>
+  <status>success</status>
+</event>

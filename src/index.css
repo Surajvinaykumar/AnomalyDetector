@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Custom font fallback for Poladots (using Poiret One as similar alternative) */
 * {
-  font-family: 'Poiret One', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Share Tech Mono', 'Poiret One', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-black text-white antialiased;
+    @apply bg-black text-gray-900 antialiased dark:bg-black dark:text-gray-100;
   }
   
   /* Custom scrollbar */
@@ -19,15 +21,15 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-gray-900;
+    @apply bg-gray-200 dark:bg-gray-800;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-700 rounded-full;
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-600;
+    @apply bg-gray-500 dark:bg-gray-500;
   }
 }
 
